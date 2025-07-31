@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+const baseUrl = import.meta.env.VITE_BASE_URL;
+
 export default function Register() {
   const [formData, setFormData] = useState({
     nombre: "",
@@ -19,7 +21,7 @@ export default function Register() {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:8080/api/usuarios", {
+      const response = await fetch(`${baseUrl}api/usuarios`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

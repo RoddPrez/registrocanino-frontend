@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
+const baseUrl = import.meta.env.VITE_BASE_URL;
+
 const VerDuenos = () => {
   const [duenos, setDuenos] = useState([]);
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/api/usuarios/con-perros")
+      .get(`${baseUrl}api/usuarios/con-perros`)
       .then((res) => setDuenos(res.data))
       .catch((err) => console.error("Error al cargar datos de dueños:", err));
   }, []);

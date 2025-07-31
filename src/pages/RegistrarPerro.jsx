@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 
+const baseUrl = import.meta.env.VITE_BASE_URL;
+
 const RegistrarPerro = () => {
   const [form, setForm] = useState({
     nombre: "",
@@ -26,7 +28,7 @@ const RegistrarPerro = () => {
     }
 
     try {
-      await axios.post("http://localhost:8080/api/perros", {
+      await axios.post(`${baseUrl}api/perros`, {
         ...form,
         usuarioId: parseInt(usuarioId), // asegúrate de enviarlo como número si tu backend lo espera así
       });

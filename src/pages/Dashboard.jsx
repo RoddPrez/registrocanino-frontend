@@ -14,6 +14,8 @@ import {
 } from "recharts";
 import { useNavigate } from "react-router-dom";
 
+const baseUrl = import.meta.env.VITE_BASE_URL;
+
 const Dashboard = () => {
   const navigate = useNavigate();
 
@@ -26,18 +28,14 @@ const Dashboard = () => {
   useEffect(() => {
     const cargarDatos = async () => {
       try {
-        const resTotal = await axios.get(
-          "http://localhost:8080/api/perros/total"
-        );
+        const resTotal = await axios.get(`${baseUrl}api/perros/total`);
         setTotalPerros(resTotal.data.total);
 
-        const resRazas = await axios.get(
-          "http://localhost:8080/api/perros/por-raza"
-        );
+        const resRazas = await axios.get(`${baseUrl}api/perros/por-raza`);
         setDatosPorRaza(resRazas.data);
 
         const resEdades = await axios.get(
-          "http://localhost:8080/api/perros/por-edad-tamanio"
+          `${baseUrl}api/perros/por-edad-tamanio`
         );
         setEdadesPorTamaño(resEdades.data);
 
