@@ -23,11 +23,10 @@ export default function Login() {
       if (response.ok) {
         const data = await response.json();
 
-        // 🔐 Guardar el ID del usuario autenticado
+        // 🔐 Guardar datos del usuario
         localStorage.setItem("usuarioId", data.id);
-
-        // (Opcional) Guardar todo el objeto por si lo necesitas después
         localStorage.setItem("usuario", JSON.stringify(data));
+        localStorage.setItem("usuarioNombre", data.nombre);
 
         alert("✅ Inicio de sesión exitoso");
         navigate("/panel");
