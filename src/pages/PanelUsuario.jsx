@@ -1,12 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 
 const PanelLayout = () => {
+  const [nombreUsuario, setNombreUsuario] = useState("");
+
+  useEffect(() => {
+    const nombre = localStorage.getItem("usuarioNombre");
+    if (nombre) {
+      setNombreUsuario(nombre);
+    }
+  }, []);
+
   return (
     <div style={styles.container}>
       {/* Sidebar */}
       <aside style={styles.sidebar}>
         <h2 style={styles.sidebarTitle}>🐶 Panel Canino</h2>
+
+        {nombreUsuario && (
+          <div style={styles.userBox}>
+            👋 ¡Bienvenido, <strong>{nombreUsuario}</strong>!<br />
+            Nos alegra tenerte aquí 🐾
+          </div>
+        )}
+
         <nav>
           <ul style={styles.menuList}>
             <li>
@@ -68,8 +85,17 @@ const styles = {
   sidebarTitle: {
     fontSize: "1.5rem",
     fontWeight: "bold",
-    marginBottom: "2rem",
+    marginBottom: "1.5rem",
     textAlign: "center",
+  },
+  userBox: {
+    fontSize: "0.95rem",
+    marginBottom: "2rem",
+    backgroundColor: "#2c3e50",
+    padding: "0.8rem",
+    borderRadius: "8px",
+    textAlign: "center",
+    lineHeight: "1.4",
   },
   menuList: {
     listStyle: "none",
